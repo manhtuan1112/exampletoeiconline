@@ -5,14 +5,14 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by duongtuan1211 on 12/30/2017.
+ * Created by duongtuan1211 on 1/3/2018.
  */
 @Entity
 @Table(name = "listenguideline")
-public class ListenGuideLine {
+public class ListenGuideLineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer listenGuideLineId;
+    private Integer listenGuidelineId;
 
     @Column(name = "title")
     private String title;
@@ -29,15 +29,15 @@ public class ListenGuideLine {
     @Column(name = "modifieddate")
     private Timestamp modifiedDate;
 
-    @OneToMany(mappedBy = "listenGuideLine",fetch = FetchType.LAZY)
-    private List<Comment> commentList;
+    @OneToMany(mappedBy = "listenGuideLineEntity", fetch = FetchType.LAZY)
+    private List<CommentEntity> commentEntityList;
 
-    public Integer getListenGuideLineId() {
-        return listenGuideLineId;
+    public Integer getListenGuidelineId() {
+        return listenGuidelineId;
     }
 
-    public void setListenGuideLineId(Integer listenGuideLineId) {
-        this.listenGuideLineId = listenGuideLineId;
+    public void setListenGuidelineId(Integer listenGuidelineId) {
+        this.listenGuidelineId = listenGuidelineId;
     }
 
     public String getTitle() {
@@ -80,11 +80,11 @@ public class ListenGuideLine {
         this.modifiedDate = modifiedDate;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
+    public List<CommentEntity> getCommentEntityList() {
+        return commentEntityList;
     }
 
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
+    public void setCommentEntityList(List<CommentEntity> commentEntityList) {
+        this.commentEntityList = commentEntityList;
     }
 }

@@ -1,16 +1,14 @@
 package com.mitrais.core.persistence.entity;
 
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by duongtuan1211 on 12/28/2017.
+ * Created by duongtuan1211 on 1/3/2018.
  */
 @Entity
 @Table(name = "role")
-public class Role {
+public class RoleEntity {
     @Id
     @Column(name = "roleid")
     private Integer roleId;
@@ -18,9 +16,8 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
-    private List<User> userList;
-
+    @OneToMany(mappedBy = "roleEntity",fetch = FetchType.LAZY)
+    private List<UserEntity> userEntityList;
 
     public Integer getRoleId() {
         return roleId;
@@ -38,11 +35,11 @@ public class Role {
         this.name = name;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<UserEntity> getUserEntityList() {
+        return userEntityList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUserEntityList(List<UserEntity> userEntityList) {
+        this.userEntityList = userEntityList;
     }
 }

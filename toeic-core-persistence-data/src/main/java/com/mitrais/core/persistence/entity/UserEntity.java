@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by duongtuan1211 on 12/28/2017.
+ * Created by duongtuan1211 on 1/3/2018.
  */
 @Entity
-@Table(name="user")
-public class User {
+@Table(name = "user")
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
@@ -27,11 +27,11 @@ public class User {
     private Timestamp createdDate;
 
     @ManyToOne
-    @JoinColumn(name = "roleid")
-    private Role role;
+    @JoinColumn(name="roleid")
+    private RoleEntity roleEntity;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Comment> commentList;
+    @OneToMany(mappedBy = "userEntity",fetch = FetchType.LAZY)
+    private List<CommentEntity> commentEntityList;
 
     public Integer getUserId() {
         return userId;
@@ -73,20 +73,19 @@ public class User {
         this.createdDate = createdDate;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
+    public RoleEntity getRoleEntity() {
+        return roleEntity;
     }
 
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
+    public void setRoleEntity(RoleEntity roleEntity) {
+        this.roleEntity = roleEntity;
     }
 
-    public Role getRole() {
-        return role;
+    public List<CommentEntity> getCommentEntityList() {
+        return commentEntityList;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setCommentEntityList(List<CommentEntity> commentEntityList) {
+        this.commentEntityList = commentEntityList;
     }
-
 }
