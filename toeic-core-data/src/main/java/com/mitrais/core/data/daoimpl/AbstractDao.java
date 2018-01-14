@@ -2,10 +2,7 @@ package com.mitrais.core.data.daoimpl;
 
 import com.mitrais.core.common.util.HibernateUtil;
 import com.mitrais.core.data.dao.GenericDao;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -57,6 +54,38 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
             result = (T) object;
             transaction.commit();
         } catch (HibernateException e) {
+            transaction.rollback();
+            throw e;
+        }finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public void save(T entity) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.persist(entity);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            throw e;
+        }finally {
+            session.close();
+        }
+    }
+
+    public T findById(ID id) {
+        T result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try{
+            result = (T) session.get(persistenceClass,id);
+            if(result==null){
+                throw new ObjectNotFoundException(" NOT FOUND "+id,null);
+            }
+        }catch (HibernateException e){
             transaction.rollback();
             throw e;
         }finally {
