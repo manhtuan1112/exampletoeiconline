@@ -10,4 +10,5 @@ public interface GenericDao<ID extends Serializable,T> {
     T update(T entity);
     void save(T entity);
     T findById(ID var1);
+    Object[] findByProperty(String property, Object value, String sortExpression, String sortDirection);
 }
