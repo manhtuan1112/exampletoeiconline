@@ -6,6 +6,7 @@ import com.mitrais.core.daoimpl.RoleDaoImpl;
 import com.mitrais.core.persistence.entity.RoleEntity;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +32,8 @@ public class ApiTest {
     public void checkSaveRole() {
         RoleDao roleDao = new RoleDaoImpl();
         RoleEntity entity = new RoleEntity();
-        entity.setRoleId(3);
-        entity.setName("MANAGER");
+        entity.setRoleId(2);
+        entity.setName("USER");
         roleDao.save(entity);
     }
 
@@ -51,5 +52,14 @@ public class ApiTest {
         String sortDirection = null;
         Object[] objects = roleDao.findByProperty(property,value,sortExpression,sortDirection);
 
+    }
+
+    @Test
+    public void checkDelete(){
+        List<Integer> listId= new ArrayList<Integer>();
+        listId.add(1);
+        listId.add(2);
+        RoleDao roleDao=new RoleDaoImpl();
+        Integer count = roleDao.delete(listId);
     }
 }
