@@ -5,11 +5,7 @@
         <partern>/404-page.html</partern>
         <partern>/ajax*</partern>
     </excludes>
-    <!--apply sitemesh default template-->
     <decorator name="admin" page="admin.jsp">
-        <partern>/admin*</partern>
-    </decorator>
-    <decorator name="admin" page="admin.jsp">
-        <partern>/*</partern>
+        <pattern>/*</pattern>
     </decorator>
 </decorators>
